@@ -7,7 +7,7 @@
 
 <h1> Imaging Final Project: Painting Analysis</h1>
   
-  <p> I do not have any partners for this assignment</p>
+  <p> Skye McKay</p>
   
 <p>I will be creating an SVM program in order to date the era of work by Titian my sample data is 
   found from BU History department and i hope to be able to help with labeling un-dated work using this program. 
@@ -17,15 +17,46 @@
   of the paintings. I hope that with these and possibly more data I can create an efficient SVM using matlab and c++ to c
   orrectly label unknown paintings.</p>
   
+  <p> This method could be applied to many other forms of art analysis such as being able to identifier an unidentified painter
+    of a some work that's recently discovered. This would be just a building point for that and would require many more samples 
+    of different artist works it would also run into problems of similar styles from similar times that would need direct 
+    comparison. However being able to differentiate between early and later works of one artist life is more easily done.
+    The way I break the images apart is as follows </p>
   
-  <p> The original image. </p>
+  <p> SVM classifiers are use usually to create "one vs one" test by training weights for the input attributes known as alphas
+    and a y-intercept known as the bias. They use a neural network created by a Kernel of the training data with expected 
+    correlated labels in a vector of equal depth as the matrix of training data. The more examples and the more attributes of 
+   value used the better the classifier will work. My classifier is used to distinguish Early era from Middle era, Early era from 
+    Late era and Middle era from Late era using a DAG testing tree. I first compare them with the weights for Early vs Middle if 
+    the result is positive I continue and test them against Early vs Late returnin Early if the result is still positive and Late 
+    if else. If the original result is negative I still test a second time but this time Mid vs Late, positive results being Mid 
+    and negative being late. More information on this can be found in (insert DAGtesting paper name and url) </p>
+  
+  
+  <p> The original image such as this is an early work of Titian. Many of his early works use vibrant colors and are heavily 
+  saturated such as this. I also noticed a trend of more biblical or medieval themes in the early works while the later works 
+  are often commissioned darker colored portraits or based in Greek Mythology. Middle era paintings are usually combination 
+  of both and however are usually darker than early era. This is an Early era painting of the Virgin Mary and a baby Christ.</p>
   <img src = "0e5e3d88a3.jpg" alt= "Madonna and Child">
   
   <p> The altered images are used to find the amount of skin colored pixels, green colored, pink and blue colored and then 
-    where all the faces that are readable are circled.</p>
+   where all the faces that are readable by opencv facial detection are circled. Before finding These fields I first calculate 
+  the average brightness and saturation of each painting which is then used to help distinguish what pixel values would represent
+  the color I'm looking for in a given painting. I also find the amount of people in a painting(not opencv), the amount of nudity they show
+  and the centrality of the picture that person has. These are the 9 attributes I collected from the samples in order to create
+  a matrix for the SVM classifier.</p>
   
-  <p> Skin Detection </p>
+  <p> Skin Detection is found similary to the SkinDetect from lab. I calibrate the skin pigmentation to the creamy sometimes 
+  yellowy color of all his paintings and also adjust the tones of red and blue to the overall brightness value that I find 
+  before checking for skin detection.</p>
   <img src = "skin.jpg" alt = "skin colored pixels">
+  <p> After I find the amount of skin I calculate the amount of people in the image by taking vector blobs of the skin data
+    then finding their average size. If the average size is small like less than 200 pixels then anything of that size -50 
+    will be considered a person. If its large such as 300+ I add around 100 to the average size and anything above that is 
+    considered a person. While finding the vector blobs of the skin I also find the total amount of skin shown in the image
+    in order to calculate nudity I use the total amount of skin shown and divide it by the amount of people and the size of the 
+    painting. </p>
+  
   <p> Green pixels </p>
   <img src = "green.jpg" alt = "Green pixels">
   <p> Pink pixels </p>
