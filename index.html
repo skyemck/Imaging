@@ -9,6 +9,8 @@
   
   <p> Skye McKay</p>
   
+  <h1> Problem and Method </h1>
+  
 <p>I will be creating an SVM program in order to date the era of work by Titian my sample data is 
   found from BU History department and i hope to be able to help with labeling un-dated work using this program. 
   I will break the pictures into sample data testing for facial features, overall brightness, use of bright blue and pink 
@@ -23,6 +25,8 @@
     comparison. However being able to differentiate between early and later works of one artist life is more easily done.
     The way I break the images apart is as follows </p>
   
+  <h1> SVM Classifier </h1>
+  
   <p> SVM classifiers are use usually to create "one vs one" test by training weights for the input attributes known as alphas
     and a y-intercept known as the bias. They use a neural network created by a Kernel of the training data with expected 
     correlated labels in a vector of equal depth as the matrix of training data. The more examples and the more attributes of 
@@ -34,13 +38,20 @@
   <a href = "https://pdfs.semanticscholar.org/6401/c2a43c1443ef88ec1c265d03535f6ffbd311.pdf"> Ferdowsi University of Mashhad, Iran
     Multi-class SVM Machine <a>
   
+    <h1> Art Analysis </h1>
   
+    <img src = "0e5e3d88a3.jpg" alt= "Madonna and Child">
+    
   <p> The original image such as this is an early work of Titian. Many of his early works use vibrant colors and are heavily 
   saturated such as this. I also noticed a trend of more biblical or medieval themes in the early works while the later works 
   are often commissioned darker colored portraits or based in Greek Mythology. Middle era paintings are usually combination 
-  of both and however are usually darker than early era. This is an Early era painting of the Virgin Mary and a baby Christ.</p>
-  <img src = "0e5e3d88a3.jpg" alt= "Madonna and Child">
-  
+  of both and however are usually darker than early era. This is an Early era painting of the Virgin Mary and a baby Christ.
+   More information on Titian can be found.  </p>
+    <a href = "http://www.titian.org/"> Titians work <a>
+      <p>Also Bu's Art History Professor, Jodi Cranston is an expert on Titan her webpage to links to her work is </p>
+      <a href = "https://www.bu.edu/ah/profile/jodi-cranston/"> Jodi Cranston <a>
+    
+        <h1> Methods of Image analysis </h1>
   <p> The altered images are used to find the amount of skin colored pixels, green colored, pink and blue colored and then 
    where all the faces that are readable by opencv facial detection are circled. Before finding These fields I first calculate 
   the average brightness and saturation of each painting which is then used to help distinguish what pixel values would represent
@@ -59,17 +70,29 @@
     in order to calculate nudity I use the total amount of skin shown and divide it by the amount of people and the size of the 
     painting. </p>
   
-  <p> Green pixels </p>
+  <p> Green pixels are found because many of Titian's early works are pastoral or large landscapes with few people as the 
+    subject. This is a binary representation of the Green in the image. </p>
   <img src = "green.jpg" alt = "Green pixels">
-  <p> Pink pixels </p>
+        
+  <p> Pink pixels or this shade of pink is often correlated to paintings of Christ or the virgin Mary. I calculate these in order
+     to quantify how religious a painting is. Also Titian has many different paintings of Mary and Christ most within his 
+      early work so this is a big help of identifyng that.</p>
   <img src = "pink.jpg" alt = "Pink pixels">
-  <p> Blue pixels </p>
+        
+  <p> Blue pixels similary to the pink pixels this blue thats close to cerulean is often associated to Christ and the Mother
+    but also angels as well. Calculating this also helps draw a distinction between early and the others.</p>
   <img src = "blue.jpg" alt = "Blue pixels">
-  <p> Face detection </p>
+        
+  <p> Face detection using the opencv face detection library works well with videos of actually people. However with these 
+    paintings and the weird shape and weird angles of the faces its very inefficient. I use it as a ninth attribute because I
+    feel like even the lack of being able to pick up information from some pictures or picking up the wrong amount of information
+    is useful in the development of as a whole. As long as theres some attribure that says it can read faces that distinguishes
+    the paintings from eachother I feel like thats important information to acquire.</p>
   <img src = "faces.jpg" alt = "Faces in image circled">
+        
+        
   
-  <p> These are some of the ways I break down the source images into values. I also take into account brightness, saturation,
-    and nudity found by the first image and the skin image in order to catergorize the images as best as possible </p>
+  
   
 
 </body>
