@@ -11,30 +11,30 @@
   
   <h1> Problem and Method </h1>
   
-<p>I will be creating an SVM program in order to date the era of work by Titian my sample data is 
-  found from BU History department and i hope to be able to help with labeling un-dated work using this program. 
-  I will break the pictures into sample data testing for facial features, overall brightness, use of bright blue and pink 
-  since these colors are commonly used in religious works during the time period, use of nudity since greek myth painting 
-  often use nude figures, centrality of portraits, amount of people in each painting,facial expressions and overall size 
-  of the paintings. I hope that with these and possibly more data I can create an efficient SVM using matlab and c++ to c
-  orrectly label unknown paintings.</p>
+<p>I will be creating an SVM program in order to date the era of work by Titian. My sample data is from BU History department,
+  and I hope to be able to help with labeling un-dated work using this program. I will break the pictures into sample data 
+  testing for facial features, overall brightness, use of bright blue and pink, these colors are commonly used in religious
+  works during the time period, use of nudity, greek myth painting often use nude figures, centrality of portraits, number of
+  people in each painting, facial expressions and overall size of the paintings. I hope that with this and possibly more data 
+  I can create an efficient SVM using matlab and c++ to c orrectly label unknown paintings.</p>
   
-  <p> This method could be applied to many other forms of art analysis such as being able to identifier an unidentified painter
-    of a some work that's recently discovered. This would be just a building point for that and would require many more samples 
-    of different artist works it would also run into problems of similar styles from similar times that would need direct 
-    comparison. However being able to differentiate between early and later works of one artist life is more easily done.
-    The way I break the images apart is as follows </p>
+  <p> This method could be applied to many other forms of art analysis such as identifying an unidentified painter of a work 
+    that's recently discovered. This would be just a starting point for that complex process that would require many more 
+    samples of different artist works, it would also run into problems of similar styles from similar times that would need
+    direct comparison. However being able to differentiate between early and later works of one artist life is more easily 
+    done. The way I break the images apart is as follows
+ </p>
   
   <h1> SVM Classifier </h1>
   
-  <p> SVM classifiers are use usually to create "one vs one" test by training weights for the input attributes known as alphas
-    and a y-intercept known as the bias. They use a neural network created by a Kernel of the training data with expected 
-    correlated labels in a vector of equal depth as the matrix of training data. The more examples and the more attributes of 
-   value used the better the classifier will work. My classifier is used to distinguish Early era from Middle era, Early era from 
-    Late era and Middle era from Late era using a DAG testing tree. I first compare them with the weights for Early vs Middle if 
-    the result is positive I continue and test them against Early vs Late returnin Early if the result is still positive and Late 
-    if else. If the original result is negative I still test a second time but this time Mid vs Late, positive results being Mid 
-    and negative being late. More information on this. </p>
+  <p> SVM classifiers are usually used to create "one vs one" test by training weights for the input attributes known as 
+    alphas and a y-intercept known as the bias. They use a neural network created by a Kernel of the training data with 
+    expected correlated labels in a vector of equal depth as the matrix of training data. The more examples and the more 
+    attributes of value used the better the classifier will work. My classifier is used to distinguish Early era from Middle 
+    era, Early era from Late era and Middle era from Late era using a DAG testing tree. I first compare them with the weights
+    for Early vs Middle if the result is positive I continue and test them against Early vs Late returning Early if the 
+    result is still positive and Late if else. If the original result is negative I still test a second time but this time 
+    Mid vs Late, positive results being Mid and negative being late. More information on this. </p>
   <a href = "https://pdfs.semanticscholar.org/6401/c2a43c1443ef88ec1c265d03535f6ffbd311.pdf"> Ferdowsi University of Mashhad, Iran
     Multi-class SVM Machine <a>
   
@@ -43,59 +43,69 @@
     <img src = "0e5e3d88a3.jpg" alt= "Madonna and Child">
     
   <p> The original image such as this is an early work of Titian. Many of his early works use vibrant colors and are heavily 
-  saturated such as this. I also noticed a trend of more biblical or medieval themes in the early works while the later works 
-  are often commissioned darker colored portraits or based in Greek Mythology. Middle era paintings are usually combination 
-  of both and however are usually darker than early era. This is an Early era painting of the Virgin Mary and a baby Christ.
-   More information on Titian can be found.  </p>
+    saturated such as this. I also noticed a trend of more biblical or medieval themes in the early works while the later
+    works are often commissioned darker colored portraits or based in Greek Mythology. Middle era paintings are usually 
+    combination of both and however are usually darker than early era. This is an Early era painting of the Virgin Mary and 
+    a baby Christ. More information on Titian can be found.</p>
     <a href = "http://www.titian.org/"> Titians work <a>
       <p>Also Bu's Art History Professor, Jodi Cranston is an expert on Titan her webpage to links to her work is </p>
       <a href = "https://www.bu.edu/ah/profile/jodi-cranston/"> Jodi Cranston <a>
     
         <h1> Methods of Image analysis </h1>
-  <p> The altered images are used to find the amount of skin colored pixels, green colored, pink and blue colored and then 
-   where all the faces that are readable by opencv facial detection are circled. Before finding These fields I first calculate 
-  the average brightness and saturation of each painting which is then used to help distinguish what pixel values would represent
-  the color I'm looking for in a given painting. I also find the amount of people in a painting(not opencv), the amount of nudity they show
-  and the centrality of the picture that person has. These are the 9 attributes I collected from the samples in order to create
-  a matrix for the SVM classifier.</p>
+  <p> The altered images are used to find the amount of skin colored, green colored, pink and blue colored pixels, and then all
+    the faces that are readable by opencv facial detection are circled. Before finding these fields I first calculate the 
+    average brightness and saturation of each painting which is then used to help distinguish what pixel values would 
+    represent the color I'm looking for in a given painting. I also find the number of people in a painting(not opencv), 
+    the amount of nudity they show and the centrality of the picture that person has. These are the 9 attributes I collected 
+    from the samples in order to create a matrix for the SVM classifier.</p>
   
-  <p> Skin Detection is found similary to the SkinDetect from lab. I calibrate the skin pigmentation to the creamy sometimes 
-  yellowy color of all his paintings and also adjust the tones of red and blue to the overall brightness value that I find 
-  before checking for skin detection.</p>
+  <p> Skin Detection is found similarly to the SkinDetect from lab. I calibrate the skin pigmentation to the creamy sometimes 
+    yellowy color of all his paintings and also adjust the tones of red and blue to the overall brightness value that I find 
+    before checking for skin detection.</p>
   <img src = "skin.jpg" alt = "skin colored pixels">
-  <p> After I find the amount of skin I calculate the amount of people in the image by taking vector blobs of the skin data
+        
+  <p> After I find the amount of skin I calculate the amount of people in the image by taking vector blobs of the skin data 
     then finding their average size. If the average size is small like less than 200 pixels then anything of that size -50 
-    will be considered a person. If its large such as 300+ I add around 100 to the average size and anything above that is 
-    considered a person. While finding the vector blobs of the skin I also find the total amount of skin shown in the image
-    in order to calculate nudity I use the total amount of skin shown and divide it by the amount of people and the size of the 
-    painting. </p>
+    will be considered a person. If it's large such as 300+ I add around 100 to the average size and anything above that is 
+    considered a person. While finding the vector blobs of the skin I also find the total amount of skin shown in the image 
+    in order to calculate nudity I use the total amount of skin shown and divide it by the amount of people and the size of 
+    the painting.</p>
   
   <p> Green pixels are found because many of Titian's early works are pastoral or large landscapes with few people as the 
     subject. This is a binary representation of the Green in the image. </p>
   <img src = "green.jpg" alt = "Green pixels">
         
-  <p> Pink pixels or this shade of pink is often correlated to paintings of Christ or the virgin Mary. I calculate these in order
-     to quantify how religious a painting is. Also Titian has many different paintings of Mary and Christ most within his 
-      early work so this is a big help of identifyng that.</p>
+  <p> Pink pixels or this shade of pink is often correlated to paintings of Christ or the virgin Mary. I calculate these in
+    order to quantify how religious a painting is. Also Titian has many different paintings of Mary and Christ most within 
+    his early work so this is a big help of identifying that.</p>
   <img src = "pink.jpg" alt = "Pink pixels">
         
-  <p> Blue pixels similary to the pink pixels this blue thats close to cerulean is often associated to Christ and the Mother
+  <p> Blue pixels similarly to the pink pixels this blue that's close to cerulean is often associated to Christ and the Mother
     but also angels as well. Calculating this also helps draw a distinction between early and the others.</p>
   <img src = "blue.jpg" alt = "Blue pixels">
         
   <p> Face detection using the opencv face detection library works well with videos of actually people. However with these 
-    paintings and the weird shape and weird angles of the faces its very inefficient. I use it as a ninth attribute because I
-    feel like even the lack of being able to pick up information from some pictures or picking up the wrong amount of information
-    is useful in the development of as a whole. As long as theres some attribure that says it can read faces that distinguishes
-    the paintings from eachother I feel like thats important information to acquire.</p>
+    paintings and the weird shape and weird angles of the faces it's very inefficient. I use it as a ninth attribute because 
+    I feel like even the lack of being able to pick up information from some pictures or picking up the wrong amount of 
+    information is useful in the development of as a whole. As long as there's some attribute that says it can read faces 
+    that distinguishes the paintings from each other I feel like that's important information to acquire.</p>
   <img src = "faces.jpg" alt = "Faces in image circled">
         
         <h1> Data sample of training matrix </h1>
     <img src = "matrix.jpg" alt = "Data">
+        <ol>
+          <li>Brightness<li>
+          <li>Saturation<li>
+          <li>Pink pixels<li>
+          <li>Amount of People<li>
+          <li>Nudity<li>
+          <li>Blue pixels<li>
+          <li>Centrality<li>
+          <li>Green pixels<li>
+          <li>Opencv face detect<li>
+        <ol>
         
   
   
-  
-
 </body>
 </html>
