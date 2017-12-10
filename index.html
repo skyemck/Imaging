@@ -41,6 +41,8 @@
     <h1> Art Analysis </h1>
   
     <img src = "0e5e3d88a3.jpg" alt= "Madonna and Child">
+    <img src = "painting90.jpg" alt= "Homo ecco">
+    
     
   <p> The original image such as this is an early work of Titian. Many of his early works use vibrant colors and are heavily 
     saturated such as this. I also noticed a trend of more biblical or medieval themes in the early works while the later
@@ -63,6 +65,7 @@
     yellowy color of all his paintings and also adjust the tones of red and blue to the overall brightness value that I find 
     before checking for skin detection.</p>
   <img src = "skin.jpg" alt = "skin colored pixels">
+       <img src = "skin2.jpg" alt = "skin colored pixels">
         
   <p> After I find the amount of skin I calculate the amount of people in the image by taking vector blobs of the skin data 
     then finding their average size. If the average size is small like less than 200 pixels then anything of that size -50 
@@ -74,15 +77,18 @@
   <p> Green pixels are found because many of Titian's early works are pastoral or large landscapes with few people as the 
     subject. This is a binary representation of the Green in the image. </p>
   <img src = "green.jpg" alt = "Green pixels">
+       <img src = "green2.jpg" alt = "green colored pixels">
         
   <p> Pink pixels or this shade of pink is often correlated to paintings of Christ or the virgin Mary. I calculate these in
     order to quantify how religious a painting is. Also Titian has many different paintings of Mary and Christ most within 
     his early work so this is a big help of identifying that.</p>
   <img src = "pink.jpg" alt = "Pink pixels">
+        <img src = "Pink2.jpg" alt = "pink colored pixels">
         
   <p> Blue pixels similarly to the pink pixels this blue that's close to cerulean is often associated to Christ and the Mother
     but also angels as well. Calculating this also helps draw a distinction between early and the others.</p>
   <img src = "blue.jpg" alt = "Blue pixels">
+        <img src = "Blue2.jpg" alt = "Blue pixels">
         
   <p> Face detection using the opencv face detection library works well with videos of actually people. However with these 
     paintings and the weird shape and weird angles of the faces it's very inefficient. I use it as a ninth attribute because 
@@ -90,6 +96,7 @@
     information is useful in the development of as a whole. As long as there's some attribute that says it can read faces 
     that distinguishes the paintings from each other I feel like that's important information to acquire.</p>
   <img src = "faces.jpg" alt = "Faces in image circled">
+        <img src = "Face2.jpg" alt = "opencv faces">
         
         <h1> Data sample of training matrix </h1>
     <img src = "matrix.jpg" alt = "Data">
